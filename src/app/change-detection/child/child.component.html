@@ -1,0 +1,27 @@
+<li>
+  <div class="content" [ngStyle]="{'background-color': getDefaultColor()}" #contentNode>
+    <br>
+    {{ triggerChangeDetection() }}
+    <p>depth: {{depth()}}</p>
+    <div class="flex-center flex-gap">
+      <h1 class="inline-title">{{depth() === 4 ? 'Root ' : 'Child '}}{{componentId}}</h1>
+      <counter title="CD" [count]="cdCount"></counter>
+      <counter title="Signal" [count]="signalCount()"></counter>
+    </div>
+    <div class="flex-center flex-gap">
+      <button class="btn btn-primary" (click)="incrementSignalCount()">Manual change</button>
+      <ng-container *ngIf="!intervalId">
+        <button class="btn btn-primary" (click)="startInterval()">Start interval change</button>
+      </ng-container>
+      <ng-container *ngIf="intervalId">
+        <button class="btn btn-primary" (click)="stopInterval()">Stop interval change</button>
+      </ng-container>
+    </div>
+  </div>
+  @if (depth() > 1) {
+    <ul>
+      <child [depth]="depth() - 1" [color]="getDefaultColor(depth()-1)" class="child" />
+      <child [depth]="depth() - 2" [color]="getDefaultColor(depth()-2)" class="child" />
+    </ul>
+  }
+</li>
