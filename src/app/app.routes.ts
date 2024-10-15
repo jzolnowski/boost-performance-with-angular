@@ -1,9 +1,6 @@
 import { Routes } from '@angular/router';
-import { NgOptimzedImageLayoutComponent } from './ng-optimzed-image/layout.component';
 import { deferredRoutes } from './deferred-view/deferred.routes';
-import { ngOptimizedImageRoutes } from './ng-optimzed-image/ng-otimized-image.routes';
 import { DeferredViewLayoutComponent } from './deferred-view/layout.component';
-import { ChangeDetectionComponent } from './change-detection/change-detection.component';
 
 export const routes: Routes = [
   {
@@ -18,11 +15,11 @@ export const routes: Routes = [
   },
   {
     path: 'ng-optimized-image',
-    component: NgOptimzedImageLayoutComponent,
-    children: ngOptimizedImageRoutes,
+    loadComponent: () => import('./ng-optimzed-image/layout.component').then(c => c.NgOptimzedImageLayoutComponent),
+    loadChildren: () => import('./ng-optimzed-image/ng-otimized-image.routes').then(r => r.ngOptimizedImageRoutes),
   },
   {
     path: 'change-detection',
-    component: ChangeDetectionComponent,
+    loadComponent: () => import('./change-detection/change-detection.component').then(c => c.ChangeDetectionComponent),
   },
 ];

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { provideImgixLoader } from '@angular/common';
 
 @Component({
   selector: 'deferred-view-layout',
   standalone: true,
+  providers: [provideImgixLoader('https://via.assets.so/')],
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
     <p>

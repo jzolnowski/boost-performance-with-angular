@@ -17,8 +17,8 @@ import { CommonModule } from '@angular/common';
   selector: 'child',
   templateUrl: './child.component.html',
   styleUrl: './child.component.scss',
-  changeDetection: ChangeDetectionStrategy.Default,
-  imports: [CommonModule, CounterComponent]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, CounterComponent],
 })
 export class ChildComponent {
   zone = inject(NgZone);
